@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:13:09 by malbrand          #+#    #+#             */
-/*   Updated: 2021/01/07 18:41:18 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/01/14 16:55:16 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-# define BUFFE_SIZE 42
+# define BUFFER_SIZE 4
 # endif
 
 char		*ft_strjoin(char const *s1, char const *s2);
@@ -29,5 +29,6 @@ char		*ft_strdup(char const *s);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 size_t		ft_strlen(char const *s);
 char		*ft_strchr(char const *str, int c);
+int			get_next_line(int fd, char **line);
 
 #endif

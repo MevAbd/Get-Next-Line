@@ -6,9 +6,11 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:32:12 by malbrand          #+#    #+#             */
-/*   Updated: 2021/01/07 18:34:40 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/01/14 17:00:28 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "get_next_line.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -19,7 +21,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	j = 0;
 	len = ft_strlen(s1) + ft_strlen(s2);
-	if (!(ret = (char *)malloc(sizeof(char) * len)))
+	if (!(ret = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	i = 0;
 	while (s1[i])
@@ -56,9 +58,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 
 	i = 0;
-	if (s == NULL)
-		return (NULL);
-	if ((size_t)start >= len)
+	if ((size_t)start >= ft_strlen(s))
 	{
 		if (!(ret = (char *)malloc(sizeof(char) * 1)))
 			return (NULL);
