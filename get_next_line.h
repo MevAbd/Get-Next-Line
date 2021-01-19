@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:13:09 by malbrand          #+#    #+#             */
-/*   Updated: 2021/01/14 16:55:16 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/01/19 09:08:48 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 4
+# define BUFFER_SIZE 6
 # endif
 
 char		*ft_strjoin(char const *s1, char const *s2);

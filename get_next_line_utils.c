@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:32:12 by malbrand          #+#    #+#             */
-/*   Updated: 2021/01/14 17:00:28 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/01/19 14:35:55 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!(ret = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	i = 0;
-	while (s1[i])
-		ret[j++] = s1[i++];
+	if (s1)
+		while (s1[i])
+			ret[j++] = s1[i++];
 	i = 0;
-	while (s2[i])
-		ret[j++] = s2[i++];
+	if (s2)
+		while (s2[i])
+			ret[j++] = s2[i++];
 	ret[j] = '\0';
 	return (ret);
 }
@@ -82,8 +84,9 @@ size_t	ft_strlen(char const *s)
 	size_t	i;
 
 	i = 0;
-	while (s[i])
-		i++;
+	if (s)
+		while (s[i])
+			i++;
 	return (i);
 }
 
@@ -93,25 +96,16 @@ char	*ft_strchr(char const *str, int c)
 	size_t		i;
 	size_t		len;
 
-	i = -1;
+	i = 0;
 	len = ft_strlen(str);
 	ret = (char *)str;
 	if (c == '\0')
+		return (&ret[len]);
+	while (ret[i])
 	{
-		ret = &ret[len];
-		return (ret);
-	}
-	if (c)
-	{
-		while (ret[++i])
-		{
-			if (ret[i] == c)
-			{
-				ret = &ret[i];
-				return (ret);
-			}
-		}
-		return (NULL);
+		if (ret[i] == c)
+			return (&ret[i]);
+		i++;
 	}
 	return (NULL);
 }
