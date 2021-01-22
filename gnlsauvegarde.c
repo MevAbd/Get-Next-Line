@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 09:47:34 by malbrand          #+#    #+#             */
-/*   Updated: 2021/01/21 13:27:08 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/01/21 13:16:04 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,25 +43,28 @@ int		get_next_line(int fd, char **line)
 
 	if (fd != 0 && !line)
 		return (-1);
-	if (str)
+	if (fd > -1)
 	{
-		if (str[0] == '\n')
+		(*line) = ft_strdup("");
+		if (str)
 		{
-			(*line) = ft_strdup("");
-			str = ft_strdup(str + 1);
-			return (1);
+			if (str[0] == '\n')
+			{
+				(*line) = ft_strdup("");
+				str = ft_strdup(str + 1);
+				return (1);
+			}
+			(*line) = ft_strdup(str);
+			free(str);
 		}
-		(*line) = ft_strdup(str);
-		if (str[0] == '\n')
-			return (1);
-		free(str);
+		while ((ret = read(fd, buff, BUFFER_SIZE)) > 0 && (str = ft_strchr(buff, '\n')) == NULL)
+			add_line(line, buff, ret);
+		if (ret == 0)
+			return (0);
+		complet_line(line, buff, &str, ret);
+		return ((ret == -1) ? -1 : 1);
 	}
-	while ((ret = read(fd, buff, BUFFER_SIZE)) > 0 && (str = ft_strchr(buff, '\n')) == NULL)
-		add_line(line, buff, ret);
-	if (ret == 0)
-		return (0);
-	complet_line(line, buff, &str, ret);
-	return ((ret == -1) ? -1 : 1);
+	return (-1);
 }
 
 int main(int ac, char **av)
